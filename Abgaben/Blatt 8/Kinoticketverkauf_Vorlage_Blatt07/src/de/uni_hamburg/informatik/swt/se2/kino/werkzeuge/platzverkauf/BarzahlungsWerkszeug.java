@@ -24,12 +24,14 @@ public class BarzahlungsWerkszeug
      * Initialisiere das Werkzeug
      * @param preis
      */
-    public BarzahlungsWerkszeug(int preis)
+    public BarzahlungsWerkszeug(int preis, PlatzVerkaufsWerkzeug pvw)
     {
         _ui = new BarzahlungsWerkzeugUI();
         _preis = preis;
         _ui.setZuZahlen(preis);
         registriereUIAktionen();
+        _platzVerkaufsWerkzeug = pvw;
+        _ui.show();
     }
 
     /**
@@ -116,14 +118,5 @@ public class BarzahlungsWerkszeug
     {
         _ui.getOkButton()
             .setEnabled(enable);
-    }
-
-    /**
-     * registriert das anfordernde Platzverkaufswerkzeug
-     * @param das PlatzVerkaufsWerkzeug
-     */
-    public void setPlatzVerkaufsWerkzeug(PlatzVerkaufsWerkzeug pvw)
-    {
-        _platzVerkaufsWerkzeug = pvw;
     }
 }

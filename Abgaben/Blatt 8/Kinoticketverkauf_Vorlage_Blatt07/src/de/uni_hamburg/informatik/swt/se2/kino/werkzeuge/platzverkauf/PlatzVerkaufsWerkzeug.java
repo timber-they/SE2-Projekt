@@ -110,8 +110,7 @@ public class PlatzVerkaufsWerkzeug
         Set<Platz> plaetze = _ui.getPlatzplan()
             .getAusgewaehltePlaetze();
         _barzahlWerkzeug = new BarzahlungsWerkszeug(
-                _vorstellung.getPreisFuerPlaetze(plaetze));
-        _barzahlWerkzeug.setPlatzVerkaufsWerkzeug(this);
+                _vorstellung.getPreisFuerPlaetze(plaetze), this);
 
     }
 

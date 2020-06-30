@@ -3,13 +3,20 @@ package de.uni_hamburg.informatik.swt.se2.kino.werkzeuge.platzverkauf;
 import java.awt.BorderLayout;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.Window;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.AbstractBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 /**
  * Die UI des {@link BarzahlungsWerkzeug}
@@ -36,7 +43,9 @@ public class BarzahlungsWerkzeugUI
     {
         _dialog = erstelleDialog();
         _dialog.setLocation(600, 300);
-        _dialog.setModalityType(Dialog.ModalityType.MODELESS);
+    }
+
+    public void show(){
         _dialog.setVisible(true);
     }
 
@@ -46,14 +55,17 @@ public class BarzahlungsWerkzeugUI
      */
     private JDialog erstelleDialog()
     {
-        JDialog dialog = new JDialog();
+        JDialog dialog = new JDialog(null, "Barzahlung", Dialog.ModalityType.APPLICATION_MODAL);
         dialog.setSize(new Dimension(300, 300));
         dialog.setLayout(new BorderLayout());
 
         JPanel zahlungsPanel = new JPanel();
         zahlungsPanel.setLayout(new GridLayout(3, 2));
 
+        AbstractBorder labelBorder = new EmptyBorder(10, 10, 10, 10);
+
         _zuZahlenLabel = new JLabel("Gesamtpreis: (ct)");
+        _zuZahlenLabel.setBorder(labelBorder);
         zahlungsPanel.add(_zuZahlenLabel);
 
         _zuZahlen = new JTextField("0");
@@ -61,15 +73,18 @@ public class BarzahlungsWerkzeugUI
         zahlungsPanel.add(_zuZahlen);
 
         _bezahltLabel = new JLabel("Barzahlung: (ct)");
+        _bezahltLabel.setBorder(labelBorder);
         zahlungsPanel.add(_bezahltLabel);
 
         _bezahlt = new JTextField("");
         zahlungsPanel.add(_bezahlt);
 
         _restgeldLabel = new JLabel("Restbetrag: (ct)");
+        _restgeldLabel.setBorder(labelBorder);
         zahlungsPanel.add(_restgeldLabel);
 
         _restgeld = new JTextField("0");
+        _restgeld.setEditable(false);
         zahlungsPanel.add(_restgeld);
 
         dialog.add(zahlungsPanel, BorderLayout.NORTH);
